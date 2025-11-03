@@ -98,6 +98,8 @@
       margin: 15px 0;
       box-shadow: 0 6px 15px rgba(212, 46, 18, 0.4);
       transition: all 0.3s ease;
+      word-wrap: break-word;
+      white-space: normal;
     }
     .btn:hover { 
       background: #b0250f; 
@@ -205,7 +207,7 @@
     /* TESTIMONIALS */
     .testimonials-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
       gap: 30px;
       margin-top: 40px;
     }
@@ -316,6 +318,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
       min-width: 200px;
       font-weight: 600;
+      word-wrap: break-word;
     }
 
     /* FOOTER */
@@ -330,6 +333,7 @@
       color: var(--gold);
       margin: 0 10px;
       text-decoration: none;
+      display: inline-block;
     }
 
     /* GDPR COOKIE BANNER */
@@ -371,12 +375,68 @@
     }
 
 
+    @media (max-width: 1200px) {
+        .benefits-grid {
+            grid-template-columns: 1fr;
+        }
+        .testimonials-grid {
+            grid-template-columns: 1fr;
+        }
+        .trust-badges {
+            gap: 15px;
+        }
+        .badge {
+            min-width: unset;
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
     @media (max-width: 768px) {
       h1 { font-size: 2.5rem; }
       .subhead { font-size: 1.2rem; }
       .story-container { padding: 30px 20px; }
       .pricing-card { padding: 30px 20px; }
       .hero-content { padding: 0 10px; }
+      header {
+          padding: 80px 15px 60px;
+          min-height: 400px;
+      }
+      .btn {
+          padding: 14px 20px;
+          font-size: 1rem;
+      }
+      .section-title {
+          font-size: 2rem;
+      }
+      .benefit-title, .benefit-card p {
+          font-size: 1.1rem;
+      }
+      .testimonial {
+          padding: 25px 20px;
+      }
+      .testimonial-text {
+          font-size: 1rem;
+      }
+      .footer-links a {
+          display: block;
+          margin: 5px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+        .hero-content {
+            padding: 0 5px;
+        }
+        h1 { font-size: 2rem; }
+        .subhead { font-size: 1rem; }
+        .story-container { padding: 20px 15px; }
+        .pricing-card { padding: 25px 15px; }
+        .price { font-size: 2.5rem; }
+        .benefit-card { padding: 20px; }
+        .testimonial { padding: 20px 15px; }
+        .faq-question { padding: 12px 15px; }
+        .faq-answer { padding: 0 15px 15px; }
     }
   </style>
 </head>
@@ -536,10 +596,11 @@
     <div class="container">
       <h2 style="text-align:center; margin-bottom:20px;">Get Your Free Waste Audit</h2>
       <p style="text-align:center; max-width:600px; margin:0 auto 30px; font-size:1.1rem;">We’ll analyze your sales data and send a custom forecast report — no payment needed.</p>
-      <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="contact" />
-        <input type="text" name="bakery-name" placeholder="Bakery Name" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;"/>
-        <select name="city" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;">
+      <!-- Form now submits to WhatsApp -->
+      <form name="contact" id="contactForm" method="GET" action="https://wa.me/917571070075">
+        <input type="hidden" name="text" id="whatsappMessage" value="" />
+        <input type="text" name="bakeryName" id="bakeryName" placeholder="Bakery Name" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;"/>
+        <select name="city" id="city" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;">
           <option value="">City/Country</option>
           <option value="Berlin, Germany">Berlin, Germany</option>
           <option value="Paris, France">Paris, France</option>
@@ -547,8 +608,8 @@
           <option value="Rome, Italy">Rome, Italy</option>
           <option value="Other">Other</option>
         </select>
-        <input type="text" name="weekly-waste" placeholder="Current Weekly Waste (€)" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;"/>
-        <input type="text" name="whatsapp" placeholder="WhatsApp Number (with country code)" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;"/>
+        <input type="text" name="weeklyWaste" id="weeklyWaste" placeholder="Current Weekly Waste (€)" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;"/>
+        <input type="text" name="whatsapp" id="whatsapp" placeholder="WhatsApp Number (with country code)" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;"/>
         <button type="submit" class="btn" style="width:100%;">Get My Custom Waste Report</button>
       </form>
     </div>
@@ -584,38 +645,40 @@
       });
     });
 
-    // Form submission with proper WhatsApp CTA
-    const form = document.querySelector('form');
+    // --- WhatsApp Form Submission ---
+    const form = document.getElementById('contactForm');
     if (form) {
       form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(form);
-        const bakeryName = formData.get('bakery-name') || 'my bakery';
-        const msg = encodeURIComponent(`Audit follow-up: My bakery is ${bakeryName}`);
-        const waUrl = `https://wa.me/917571070075?text=${msg}`;
+        e.preventDefault(); // Prevent the default form submission
 
-        fetch('/', {
-          method: 'POST',
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formData).toString()
-        })
-        .then(() => {
-          form.innerHTML = `
-            <div style="text-align:center; padding:20px;">
-              <h3 style="color:#d42e12; margin-bottom:15px;">✅ Request Received!</h3>
-              <p>Thank you! We'll analyze your data and email your custom waste report within 24 hours.</p>
-              <p style="margin-top:20px;"><strong>For instant help, WhatsApp us directly:</strong></p>
-              <a href="${waUrl}" class="btn whatsapp-btn">Chat on WhatsApp</a>
-            </div>
-          `;
-        })
-        .catch(() => {
-          form.innerHTML = `<p style="color:red; text-align:center;">Error. Please try again or WhatsApp us directly.</p>`;
-        });
+        const bakeryName = document.getElementById('bakeryName').value || 'Not provided';
+        const city = document.getElementById('city').value || 'Not provided';
+        const weeklyWaste = document.getElementById('weeklyWaste').value || 'Not provided';
+        const whatsapp = document.getElementById('whatsapp').value || 'Not provided';
+
+        // Construct the message
+        const message = `New Free Waste Audit Request!\n\nBakery Name: ${bakeryName}\nCity/Country: ${city}\nCurrent Weekly Waste (€): ${weeklyWaste}\nWhatsApp Number: ${whatsapp}`;
+        const encodedMessage = encodeURIComponent(message);
+
+        // Set the message in the hidden input field
+        document.getElementById('whatsappMessage').value = encodedMessage;
+
+        // Manually redirect to the WhatsApp URL with the message
+        const whatsappUrl = `https://wa.me/917571070075?text=${encodedMessage}`;
+        window.open(whatsappUrl, '_blank'); // Opens in a new tab/window
+
+        // Optional: Provide feedback to the user after submission
+        form.innerHTML = `
+          <div style="text-align:center; padding:20px;">
+            <h3 style="color:#d42e12; margin-bottom:15px;">✅ Request Sent!</h3>
+            <p>Thank you! We've received your details. You will be contacted shortly via WhatsApp.</p>
+          </div>
+        `;
       });
     }
+    // --- END WhatsApp Form Submission ---
 
-    // --- NEW: Cookie Consent Functionality ---
+    // --- Cookie Consent Functionality ---
     function acceptCookies() {
       document.cookie = "cookieConsent=true; path=/; max-age=31536000"; // 1 year
       document.getElementById('cookie-banner').style.display = 'none';
@@ -628,7 +691,7 @@
         document.getElementById('cookie-banner').style.display = 'block';
       }
     };
-    // --- END NEW Cookie Consent Functionality ---
+    // --- END Cookie Consent Functionality ---
   </script>
 </body>
 </html>
