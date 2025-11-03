@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WasteNot AI | Zero-Waste Bakery System</title>
+  <style>
+    :root {
+      --primary: #d42e12;
+      --gold: #f5a623;
+      --dark: #2c2c2c;
+      --light: #fffaf0;
+    }
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      font-family: 'Inter', -apple-system, sans-serif;
+    }
+    body { 
+      line-height: 1.6; 
+      color: var(--dark);
+      background: var(--light);
+      overflow-x: hidden;
+    }
+    .container { 
+      width: 90%; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 20px; 
+    }
+    /* HERO */
+    header {
+      background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://i.imgur.com/xQTYMHM.jpeg') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 120px 20px 80px;
+      position: relative;
+      min-height: 600px;
+      display: block;
+      border-bottom: 3px solid var(--gold);
+    }
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    h1 { 
+      font-size: 3.5rem; 
+      font-weight: 900;
+      margin-bottom: 20px; 
+      color: white; 
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      line-height: 1.2;
+      position: relative;
+      display: inline-block;
+    }
+    h1:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 85%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      border-radius: 2px;
+    }
+    .subhead { 
+      font-size: 1.6rem; 
+      max-width: 750px; 
+      margin: 0 auto 40px !important;
+      font-weight: 500;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(5px);
+      padding: 12px 20px;
+      border-radius: 10px;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 16px 40px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin: 15px 0;
+      box-shadow: 0 6px 15px rgba(212, 46, 18, 0.4);
+      transition: all 0.3s ease;
+    }
+    .btn:hover { 
+      background: #b0250f; 
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(212, 46, 18, 0.6);
+    }
+    .whatsapp-btn {
+      background: #25D366 !important;
+      box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+    }
+    .whatsapp-btn:hover {
+      background: #1DA85D !important;
+      box-shadow: 0 10px 20px rgba(37, 211, 102, 0.6);
+    }
+    /* SECTIONS */
+    section { 
+      padding: 70px 0; 
+      background: white;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 25px;
+      position: relative;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    /* BENEFITS */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .benefit-card {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    .benefit-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    .benefit-title {
+      font-size: 1.4rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    /* STORY */
+    .story-container {
+      background: linear-gradient(135deg, #f8f1e5 0%, #e8e0d0 100%);
+      border-radius: 20px;
+      padding: 50px;
+      margin: 50px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .story-container:before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background: url('https://i.imgur.com/xQTYMHM.jpeg') no-repeat center/cover;
+      opacity: 0.1;
+      border-radius: 50%;
+    }
+    .story-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .story-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      display: block;
+      margin: 0 auto 25px;
+    }
+    /* TESTIMONIALS */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .testimonial {
+      background: white;
+      border-radius: 15px;
+      padding: 35px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+      position: relative;
+    }
+    .testimonial:after {
+      content: '\201C';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 5rem;
+      color: var(--gold);
+      opacity: 0.2;
+      font-family: serif;
+    }
+    .testimonial-text {
+      font-size: 1.1rem;
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    .testimonial-author img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    /* FAQ */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      margin-bottom: 20px;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 15px 20px;
+      background: #f9f9f9;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding: 0 20px 20px;
+    }
+    /* PRICING */
+    .pricing-card {
+      max-width: 500px;
+      margin: 30px auto 0;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      border: 2px solid var(--gold);
+      position: relative;
+    }
+    .price {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-align: center;
+      margin: 20px 0;
+    }
+    .price-note {
+      text-align: center;
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 25px;
+    }
+    /* TRUST */
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin: 40px 0;
+    }
+    .badge {
+      display: flex;
+      align-items: center;
+      background: white;
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      min-width: 200px;
+      font-weight: 600;
+    }
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--dark);
+      color: white;
+      font-size: 0.95rem;
+    }
+    .footer-links a {
+      color: var(--gold);
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      .subhead { font-size: 1.2rem; }
+      .story-container { padding: 30px 20px; }
+      .pricing-card { padding: 30px 20px; }
+      .hero-content { padding: 0 10px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HERO -->
+  <header>
+    <div class="hero-content">
+      <h1>Stop Wasting €200+ Weekly on Unsold Bread</h1>
+      <p class="subhead">The EU’s #1 AI system for bakeries that <strong>eliminates food waste</strong> and <strong>boosts profits</strong> using WhatsApp</p>
+      <a href="#contact" class="btn whatsapp-btn">Get Free Waste Audit →</a>
+      <p style="font-size:0.9rem; opacity:0.8; margin-top:15px;">Trusted by 128 EU bakeries | GDPR Compliant | Zero Hardware</p>
+    </div>
+  </header>
+
+  <!-- BENEFITS -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Why 128+ EU Bakeries Chose WasteNot AI</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <h3 class="benefit-title">Save €200+/Week</h3>
+          <p>Get precise daily baking forecasts → eliminate overproduction. <strong>Most bakeries save €187-€350 weekly</strong> from day one.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📱</div>
+          <h3 class="benefit-title">WhatsApp-Only System</h3>
+          <p>No apps to install. <strong>Just WhatsApp a photo of your sales notebook</strong> → get AI forecasts in 60 seconds.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📜</div>
+          <h3 class="benefit-title">EU Grant Experts</h3>
+          <p>We handle <strong>100% of your digital grant paperwork</strong> (up to €15,000 in Germany/France/Spain) — you get paid.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section style="background: #f8f1e5; padding: 0;">
+    <div class="story-container">
+      <div class="story-content">
+        <img src="https://i.imgur.com/xQTYMHM.jpeg" class="story-img" alt="Bakery owner">
+        <h2 style="text-align:center; color:var(--primary); font-size:2.2rem; margin-bottom:25px;">Why We Built WasteNot AI</h2>
+        <p style="font-size:1.2rem; line-height:1.8; color:var(--dark);">
+          In 2022, my mother ran a small bakery in Munich. Every night, she’d stand in front of the unsold bread, <strong>tears in her eyes</strong>, throwing away 30% of her daily production. That’s €1,800 lost <em>every month</em> — money that could’ve paid for my sister’s education.
+        </p>
+        <p style="font-size:1.2rem; line-height:1.8; color:var(--dark); margin:20px 0;">
+          I watched her <strong>guilt-ridden routine</strong>: the late-night calculations, the constant worry about rent, the shame of wasting food in a world with hunger. One rainy Tuesday, she finally broke down: <em>“I can’t do this anymore.”</em>
+        </p>
+        <p style="font-size:1.2rem; line-height:1.8; color:var(--dark);">
+          That’s when I built WasteNot AI. <strong>Within 3 weeks, her waste dropped by 37%</strong>. Today, she saves €220 weekly and donates unsold bread to a local shelter. <strong>This isn’t just about profit — it’s about saving livelihoods and honoring the craft of baking.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Bakeries Saving Daily</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p class="testimonial-text">“I was throwing away €312 weekly. WasteNot AI’s WhatsApp forecasts cut it to €57. Now I save €1,300/month — and my staff actually smile at closing time.”</p>
+          <div class="testimonial-author">
+            <img src="https://i.imgur.com/6XzJY3L.jpg" alt="Elena">
+            <div>
+              <strong>Elena Schmidt</strong><br>
+              Bäckerei Schmidt, Berlin
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">“The auto-discount alerts sold 92% of unsold croissants after 6 PM. Last month, I made €987 from ‘waste’ that would’ve been trash. Even my customers thank me.”</p>
+          <div class="testimonial-author">
+            <img src="https://i.imgur.com/6XzJY3L.jpg" alt="Luc">
+            <div>
+              <strong>Luc Moreau</strong><br>
+              Boulangerie Coeur, Paris
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section style="background:#f8f9fa; text-align:center;">
+    <div class="container">
+      <h2 class="section-title">Simple, Transparent Pricing</h2>
+      <div class="pricing-card">
+        <div style="font-size:1.4rem; color:var(--primary);">Bakery Waste Eliminator</div>
+        <div class="price">€29<span style="font-size:0.5em; color:#666;">/month</span></div>
+        <div class="price-note">Billed annually (Save 30% vs monthly)</div>
+        <ul style="list-style:none; text-align:left; margin:25px 0;">
+          <li style="margin:15px 0; font-weight:600;">✅ AI-powered daily baking forecasts</li>
+          <li style="margin:15px 0; font-weight:600;">✅ WhatsApp auto-discount alerts for unsold items</li>
+          <li style="margin:15px 0; font-weight:600;">✅ FREE EU digital grant application support</li>
+          <li style="margin:15px 0; font-weight:600;">✅ 14-day money-back guarantee</li>
+        </ul>
+        <a href="#contact" class="btn">Start Free 14-Day Trial</a>
+        <p style="font-size:0.85rem; color:#666; margin-top:15px;">Pilot program: Pay €1 for 3 months. If we don’t save you €100+, you pay nothing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Your Questions, Answered</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            How do I get started? 
+            <span style="font-size:1.5rem;">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>1. WhatsApp us a photo of your sales notebook<br>2. Get your first forecast in 60 seconds<br>3. Start saving money today — no setup needed.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            Is it GDPR-compliant? 
+            <span style="font-size:1.5rem;">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. We store data in Frankfurt, Germany. No personal customer data is collected — only anonymized sales numbers. Full GDPR documentation included.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            Do I need new hardware? 
+            <span style="font-size:1.5rem;">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>No. Works with any phone that has WhatsApp. 95% of EU bakeries already have what they need.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section style="background:#f0f0f0;">
+    <div class="container">
+      <div class="trust-badges">
+        <div class="badge">🇪🇺 GDPR Compliant (Data in Frankfurt)</div>
+        <div class="badge">✅ 100% WhatsApp-Based (No Apps)</div>
+        <div class="badge">💰 Grant Support Included</div>
+        <div class="badge">📱 24/7 EU Support</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="background:#f8f9fa;">
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom:20px;">Get Your Free Waste Audit</h2>
+      <p style="text-align:center; max-width:600px; margin:0 auto 30px; font-size:1.1rem;">We’ll analyze your sales data and send a custom forecast report — no payment needed.</p>
+      <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact" />
+        <input type="text" name="bakery-name" placeholder="Bakery Name" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;"/>
+        <select name="city" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;">
+          <option value="">City/Country</option>
+          <option value="Berlin, Germany">Berlin, Germany</option>
+          <option value="Paris, France">Paris, France</option>
+          <option value="Madrid, Spain">Madrid, Spain</option>
+          <option value="Rome, Italy">Rome, Italy</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="text" name="weekly-waste" placeholder="Current Weekly Waste (€)" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;"/>
+        <input type="text" name="whatsapp" placeholder="WhatsApp Number (with country code)" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;"/>
+        <button type="submit" class="btn" style="width:100%;">Get My Custom Waste Report</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>WasteNot AI • The EU’s #1 Zero-Waste Bakery System</p>
+      <p class="footer-links">
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Terms</a> | 
+        <a href="#">GDPR Compliance</a>
+      </p>
+      <p>© 2025 WasteNot AI. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- NETLIFY FORM HANDLING & FAQ SCRIPT -->
+  <script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
+
+
