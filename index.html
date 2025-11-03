@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta property="og:title" content="WasteNot AI | Stop Wasting €200+/Week on Unsold Bread">
+  <meta property="og:description" content="The EU’s #1 WhatsApp-based AI system helping bakeries eliminate food waste and boost profits. Free waste audit included.">
+  <meta property="og:image" content="https://i.imgur.com/xQTYMHM.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
   <title>WasteNot AI | Zero-Waste Bakery System</title>
   <style>
     :root {
@@ -29,11 +33,12 @@
       margin: 0 auto; 
       padding: 20px; 
     }
+
     /* HERO */
     header {
       background: 
         linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-        url('https://i.imgur.com/xQTYMHM.jpeg') center/cover no-repeat; /* FIXED: removed extra spaces */
+        url('https://i.imgur.com/xQTYMHM.jpeg') center/cover no-repeat;
       color: white;
       text-align: center;
       padding: 120px 20px 80px;
@@ -107,6 +112,7 @@
       background: #1DA85D !important;
       box-shadow: 0 10px 20px rgba(37, 211, 102, 0.6);
     }
+
     /* SECTIONS */
     section { 
       padding: 70px 0; 
@@ -130,6 +136,7 @@
       background: var(--primary);
       border-radius: 2px;
     }
+
     /* BENEFITS */
     .benefits-grid {
       display: grid;
@@ -158,6 +165,7 @@
       color: var(--primary);
       margin-bottom: 15px;
     }
+
     /* STORY */
     .story-container {
       background: linear-gradient(135deg, #f8f1e5 0%, #e8e0d0 100%);
@@ -174,7 +182,7 @@
       right: -50px;
       width: 200px;
       height: 200px;
-      background: url('https://i.imgur.com/xQTYMHM.jpeg') no-repeat center/cover; /* FIXED: removed extra spaces */
+      background: url('https://i.imgur.com/xQTYMHM.jpeg') no-repeat center/cover;
       opacity: 0.1;
       border-radius: 50%;
     }
@@ -193,6 +201,7 @@
       display: block;
       margin: 0 auto 25px;
     }
+
     /* TESTIMONIALS */
     .testimonials-grid {
       display: grid;
@@ -233,6 +242,7 @@
       border-radius: 50%;
       margin-right: 15px;
     }
+
     /* FAQ */
     .faq-container {
       max-width: 800px;
@@ -263,6 +273,7 @@
       max-height: 200px;
       padding: 0 20px 20px;
     }
+
     /* PRICING */
     .pricing-card {
       max-width: 500px;
@@ -287,6 +298,7 @@
       font-size: 0.9rem;
       margin-bottom: 25px;
     }
+
     /* TRUST */
     .trust-badges {
       display: flex;
@@ -305,6 +317,7 @@
       min-width: 200px;
       font-weight: 600;
     }
+
     /* FOOTER */
     footer {
       text-align: center;
@@ -318,6 +331,46 @@
       margin: 0 10px;
       text-decoration: none;
     }
+
+    /* GDPR COOKIE BANNER */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #2c2c2c;
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+      z-index: 9999;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+      display: none; /* Hidden by default */
+    }
+    #cookie-banner p {
+      margin: 0 0 10px;
+      font-size: 0.9rem;
+    }
+    .cookie-btn {
+      background: #d42e12;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin: 0 5px;
+    }
+    .cookie-btn:hover {
+      background: #b0250f;
+    }
+    .cookie-btn[style*="background:#555;"] {
+      background: #555 !important;
+    }
+    .cookie-btn[style*="background:#555;"]:hover {
+      background: #666 !important;
+    }
+
+
     @media (max-width: 768px) {
       h1 { font-size: 2.5rem; }
       .subhead { font-size: 1.2rem; }
@@ -333,7 +386,6 @@
     <div class="hero-content">
       <h1>Stop Wasting €200+ Weekly on Unsold Bread</h1>
       <p class="subhead">The EU’s #1 AI system for bakeries that <strong>eliminates food waste</strong> and <strong>boosts profits</strong> using WhatsApp</p>
-      <!-- ✅ UPDATED: WhatsApp button -->
       <a href="https://wa.me/917571070075?text=Hello%20WasteNot%20AI%2C%20I%27m%20a%20bakery%20owner%20and%20want%20my%20free%20waste%20audit%21" class="btn whatsapp-btn">Get Free Waste Audit →</a>
       <p style="font-size:0.9rem; opacity:0.8; margin-top:15px;">Trusted by 128 EU bakeries | GDPR Compliant | Zero Hardware</p>
     </div>
@@ -367,7 +419,7 @@
   <section style="background: #f8f1e5; padding: 0;">
     <div class="story-container">
       <div class="story-content">
-        <img src="https://i.imgur.com/xQTYMHM.jpeg" class="story-img" alt="Bakery owner"> <!-- FIXED: removed extra spaces -->
+        <img src="https://i.imgur.com/xQTYMHM.jpeg" class="story-img" alt="Owner of a Munich bakery saved by WasteNot AI">
         <h2 style="text-align:center; color:var(--primary); font-size:2.2rem; margin-bottom:25px;">Why We Built WasteNot AI</h2>
         <p style="font-size:1.2rem; line-height:1.8; color:var(--dark);">
           In 2022, my mother ran a small bakery in Munich. Every night, she’d stand in front of the unsold bread, <strong>tears in her eyes</strong>, throwing away 30% of her daily production. That’s €1,800 lost <em>every month</em> — money that could’ve paid for my sister’s education.
@@ -390,7 +442,7 @@
         <div class="testimonial">
           <p class="testimonial-text">“I was throwing away €312 weekly. WasteNot AI’s WhatsApp forecasts cut it to €57. Now I save €1,300/month — and my staff actually smile at closing time.”</p>
           <div class="testimonial-author">
-            <img src="https://i.imgur.com/6XzJY3L.jpg" alt="Elena"> <!-- FIXED: removed extra spaces -->
+            <img src="https://i.imgur.com/6XzJY3L.jpg" loading="lazy" alt="Elena Schmidt, Berlin bakery owner">
             <div>
               <strong>Elena Schmidt</strong><br>
               Bäckerei Schmidt, Berlin
@@ -400,7 +452,7 @@
         <div class="testimonial">
           <p class="testimonial-text">“The auto-discount alerts sold 92% of unsold croissants after 6 PM. Last month, I made €987 from ‘waste’ that would’ve been trash. Even my customers thank me.”</p>
           <div class="testimonial-author">
-            <img src="https://i.imgur.com/6XzJY3L.jpg" alt="Luc"> <!-- FIXED: removed extra spaces -->
+            <img src="https://i.imgur.com/6XzJY3L.jpg" loading="lazy" alt="Luc Moreau, Paris bakery owner">
             <div>
               <strong>Luc Moreau</strong><br>
               Boulangerie Coeur, Paris
@@ -425,7 +477,6 @@
           <li style="margin:15px 0; font-weight:600;">✅ FREE EU digital grant application support</li>
           <li style="margin:15px 0; font-weight:600;">✅ 14-day money-back guarantee</li>
         </ul>
-        <!-- ✅ UPDATED: WhatsApp button -->
         <a href="https://wa.me/917571070075?text=Hello%20WasteNot%20AI%2C%20I%27d%20like%20to%20start%20my%20free%20trial%21" class="btn">Start Free 14-Day Trial</a>
         <p style="font-size:0.85rem; color:#666; margin-top:15px;">Pilot program: Pay €1 for 3 months. If we don’t save you €100+, you pay nothing.</p>
       </div>
@@ -485,7 +536,6 @@
     <div class="container">
       <h2 style="text-align:center; margin-bottom:20px;">Get Your Free Waste Audit</h2>
       <p style="text-align:center; max-width:600px; margin:0 auto 30px; font-size:1.1rem;">We’ll analyze your sales data and send a custom forecast report — no payment needed.</p>
-      <!-- ✅ KEPT FORM for lead quality -->
       <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact" />
         <input type="text" name="bakery-name" placeholder="Bakery Name" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;"/>
@@ -499,7 +549,6 @@
         </select>
         <input type="text" name="weekly-waste" placeholder="Current Weekly Waste (€)" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;"/>
         <input type="text" name="whatsapp" placeholder="WhatsApp Number (with country code)" required style="padding:14px; width:100%; margin:10px 0; border:1px solid #ddd; border-radius:6px;"/>
-        <!-- ✅ ADDED: WhatsApp follow-up in success message -->
         <button type="submit" class="btn" style="width:100%;">Get My Custom Waste Report</button>
       </form>
     </div>
@@ -510,13 +559,20 @@
     <div class="container">
       <p>WasteNot AI • The EU’s #1 Zero-Waste Bakery System</p>
       <p class="footer-links">
-        <a href="#">Privacy Policy</a> | 
-        <a href="#">Terms</a> | 
-        <a href="#">GDPR Compliance</a>
+        <a href="/privacy.html">Privacy Policy</a> | 
+        <a href="/terms.html">Terms</a> | 
+        <a href="/gdpr.html">GDPR Compliance</a>
       </p>
       <p>© 2025 WasteNot AI. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- GDPR COOKIE BANNER -->
+  <div id="cookie-banner">
+    <p>We use essential cookies to ensure our site works. By using this site, you accept our use of cookies.</p>
+    <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+    <a href="/privacy.html#cookies" class="cookie-btn" style="background:#555;">Learn More</a>
+  </div>
 
   <!-- NETLIFY FORM HANDLING & FAQ SCRIPT -->
   <script>
@@ -527,35 +583,52 @@
         item.classList.toggle('active');
       });
     });
-    
-    // ✅ ADDED: Form success message with WhatsApp CTA
-    document.querySelector('form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const formData = new FormData(form);
-      
-      fetch('/', {
-        method: 'POST',
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString()
-      })
-      .then(() => {
-        // Show success message
-        form.innerHTML = `
-          <div style="text-align:center; padding:20px;">
-            <h3 style="color:#d42e12; margin-bottom:15px;">✅ Request Received!</h3>
-            <p>Thank you! We'll analyze your data and email your custom waste report within 24 hours.</p>
-            <p style="margin-top:20px;"><strong>For instant help, WhatsApp us directly:</strong></p>
-            <a href="https://wa.me/917571070075?text=Audit%20follow-up%3A%20My%20bakery%20is%20" class="btn whatsapp-btn">Chat on WhatsApp</a>
-          </div>
-        `;
-      })
-      .catch(() => {
-        form.innerHTML = `<p style="color:red; text-align:center;">Error. Please try again or WhatsApp us directly.</p>`;
+
+    // Form submission with proper WhatsApp CTA
+    const form = document.querySelector('form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const bakeryName = formData.get('bakery-name') || 'my bakery';
+        const msg = encodeURIComponent(`Audit follow-up: My bakery is ${bakeryName}`);
+        const waUrl = `https://wa.me/917571070075?text=${msg}`;
+
+        fetch('/', {
+          method: 'POST',
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString()
+        })
+        .then(() => {
+          form.innerHTML = `
+            <div style="text-align:center; padding:20px;">
+              <h3 style="color:#d42e12; margin-bottom:15px;">✅ Request Received!</h3>
+              <p>Thank you! We'll analyze your data and email your custom waste report within 24 hours.</p>
+              <p style="margin-top:20px;"><strong>For instant help, WhatsApp us directly:</strong></p>
+              <a href="${waUrl}" class="btn whatsapp-btn">Chat on WhatsApp</a>
+            </div>
+          `;
+        })
+        .catch(() => {
+          form.innerHTML = `<p style="color:red; text-align:center;">Error. Please try again or WhatsApp us directly.</p>`;
+        });
       });
-    });
+    }
+
+    // --- NEW: Cookie Consent Functionality ---
+    function acceptCookies() {
+      document.cookie = "cookieConsent=true; path=/; max-age=31536000"; // 1 year
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+
+    // Show banner if consent not given
+    window.onload = function() {
+      // Check if cookieConsent cookie exists
+      if (!document.cookie.split(';').some((item) => item.trim().startsWith('cookieConsent='))) {
+        document.getElementById('cookie-banner').style.display = 'block';
+      }
+    };
+    // --- END NEW Cookie Consent Functionality ---
   </script>
 </body>
 </html>
-
-
